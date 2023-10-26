@@ -73,7 +73,7 @@ resource "aws_lb_target_group" "TargetGroup" {
 }
 
 resource "aws_lb_listener" "Listener" {
-  count             = var.configure_load_balancer ? 1 : 0
+  count             = 0# var.configure_load_balancer ? 1 : 0
   load_balancer_arn = aws_lb.LoadBalancer[0].arn
   port              = var.tcp_port
   protocol          = var.target_protocol
@@ -90,7 +90,7 @@ resource "aws_lb_listener" "Listener" {
 }
 
 resource "aws_lb" "LoadBalancer" {
-  count              = var.configure_load_balancer ? 1 : 0
+  count              = 0#var.configure_load_balancer ? 1 : 0
   name               = "${var.service_name}LB-${aws_appconfig_application.AppConfigAgentApplication.id}"
   idle_timeout       = 60
   internal           = var.lb_scheme != "internet-facing"

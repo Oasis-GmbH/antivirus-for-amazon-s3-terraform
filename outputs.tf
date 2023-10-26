@@ -6,7 +6,8 @@ output "ConsoleWebAddress" {
 
 output "LBWebAddress" {
   description = "Public DNS address of Console Web Interface"
-  value       = "${var.configure_load_balancer}" ? ["https://${aws_lb.LoadBalancer[0].dns_name}"] : null
+  # value       = "${var.configure_load_balancer}" ? ["https://${aws_lb.LoadBalancer[0].dns_name}"] : null
+  value       = "${var.configure_load_balancer}" ? ["https://${var.alb_domain}"] : null
 }
 
 output "Username" {
