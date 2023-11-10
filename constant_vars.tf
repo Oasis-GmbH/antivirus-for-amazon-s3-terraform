@@ -191,7 +191,7 @@ variable "event_bridge_role_name" {
 variable "agent_auto_assign_public_ip" {
   description = "Should public IPs be assigned to the Agents? (WARNING: do not set to disabled unless you have configured your AWS VPC in a manner that would still allow the agents to reach AWS services over the internet.)"
   type        = string
-  default     = "ENABLED"
+  default     = "DISABLED"
 }
 
 variable "allow_access_to_all_kms_keys" {
