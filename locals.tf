@@ -15,5 +15,5 @@ locals {
     var.dynamo_cmk_key_arn,
     var.sns_cmk_key_arn
   ])
-  ecs_service_name = var.configure_load_balancer ? aws_ecs_service.ServiceWithLB[0].name : aws_ecs_service.Service[0].name
+  ecs_service_name = "${var.service_name}ConsoleService-${aws_appconfig_application.AppConfigAgentApplication.id}"# var.configure_load_balancer ? aws_ecs_service.ServiceWithLB[0].name : aws_ecs_service.Service[0].name
 }
