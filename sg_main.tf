@@ -31,7 +31,7 @@ resource "aws_security_group" "ContainerSecurityGroup" {
 }
 
 resource "aws_security_group" "ContainerSecurityGroupWithLB" {
-  count       = var.configure_load_balancer ? 1 : 0
+  count       = 0#var.configure_load_balancer ? 1 : 0
   description = "${var.service_name}LBSecurityGroup-${aws_appconfig_application.AppConfigAgentApplication.id}"
   vpc_id      = var.vpc
 
