@@ -27,7 +27,7 @@ resource "aws_ecs_service" "Service" {
 
 
 resource "aws_ecs_service" "ServiceWithLB" {
-  count                              = 0#var.configure_load_balancer ? 1 : 0
+  count                              = var.configure_load_balancer ? 1 : 0
   name                               = "${var.service_name}ConsoleService-${aws_appconfig_application.AppConfigAgentApplication.id}"
   cluster                            = aws_ecs_cluster.Cluster.id
   task_definition                    = aws_ecs_task_definition.TaskDefinition.arn

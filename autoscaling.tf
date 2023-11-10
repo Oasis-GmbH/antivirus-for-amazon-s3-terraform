@@ -12,7 +12,7 @@ resource "aws_appautoscaling_target" "AutoScalingTarget" {
 }
 
 resource "aws_appautoscaling_target" "AutoScalingTargetWithLb" {
-  count              = 0# var.configure_load_balancer ? 1 : 0
+  count              = var.configure_load_balancer ? 1 : 0
   max_capacity       = 1
   min_capacity       = 1
   resource_id        = "service/${aws_ecs_cluster.Cluster.name}/${aws_ecs_service.ServiceWithLB[0].name}"
