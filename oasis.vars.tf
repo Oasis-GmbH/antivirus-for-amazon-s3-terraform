@@ -7,3 +7,8 @@ variable "alb_domain" {
     description = "Host-Domain für den ALB"
     type = string
 }
+
+variable "alb_securitygroup_id" {
+    description = "Security Group des ALB"
+    type = string
+}
