@@ -161,7 +161,7 @@ variable "api_request_scaling_policy_prefix" {
 variable "console_auto_assign_public_Ip" {
   description = "Should a public IP be assigned to the Console? (WARNING: do not set to disabled unless you have configured your AWS VPC in a manner that would still allow access to the console.)"
   type        = string
-  default     = "true"
+  default     = "false"
 }
 
 variable "ecr_account" {
