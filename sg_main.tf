@@ -40,14 +40,14 @@ resource "aws_security_group" "ContainerSecurityGroupWithLB" {
     from_port       = 80
     to_port         = 80
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.LoadBalancerSecurityGroup[0].id}"]
+    security_groups = [var.alb_securitygroup_id]#["${aws_security_group.LoadBalancerSecurityGroup[0].id}"]
   }
   ingress {
     description     = "CloudStorageSec Console port 443 ingress"
     from_port       = 443
     to_port         = 443
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.LoadBalancerSecurityGroup[0].id}"]
+    security_groups = [var.alb_securitygroup_id]#["${aws_security_group.LoadBalancerSecurityGroup[0].id}"]
   }
 
   egress {
@@ -64,7 +64,7 @@ resource "aws_security_group" "ContainerSecurityGroupWithLB" {
 }
 
 resource "aws_security_group" "LoadBalancerSecurityGroup" {
-  count       = var.configure_load_balancer ? 1 : 0
+  count       = 0#var.configure_load_balancer ? 1 : 0
   description = "${var.service_name}LBSecurityGroup-${aws_appconfig_application.AppConfigAgentApplication.id}"
   vpc_id      = var.vpc
 
