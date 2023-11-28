@@ -1,11 +1,11 @@
 variable "image_version_console" {
   description = "Console version to Deploy"
-  default     = "v7.02.000"
+  default     = "v7.03.000"
 }
 
 variable "image_version_agent" {
   description = "Agent version to Deploy"
-  default     = "v7.02.000"
+  default     = "v7.03.001"
 }
 
 variable "service_name" {

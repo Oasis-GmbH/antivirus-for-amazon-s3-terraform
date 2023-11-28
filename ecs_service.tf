@@ -5,8 +5,17 @@ resource "aws_ecs_cluster" "Cluster" {
   )
 }
 
+resource "random_string" "ecs_service_id" {
+  length  = 16
+  special = false
+  keepers = {
+    console_version = var.image_version_console
+    agent_version = var.image_version_agent
+  }
+}
+
 resource "aws_ecs_service" "Service" {
-  name                               = "${var.service_name}ConsoleService-${aws_appconfig_application.AppConfigAgentApplication.id}"
+  name                               = "${var.service_name}ConsoleService-${aws_appconfig_application.AppConfigAgentApplication.id}-${random_string.ecs_service_id.result}"
   count                              = var.configure_load_balancer ? 0 : 1
   cluster                            = aws_ecs_cluster.Cluster.id
   task_definition                    = aws_ecs_task_definition.TaskDefinition.arn
@@ -28,7 +37,7 @@ resource "aws_ecs_service" "Service" {
 
 resource "aws_ecs_service" "ServiceWithLB" {
   count                              = var.configure_load_balancer ? 1 : 0
-  name                               = "${var.service_name}ConsoleService-${aws_appconfig_application.AppConfigAgentApplication.id}"
+  name                               = "${var.service_name}ConsoleService-${aws_appconfig_application.AppConfigAgentApplication.id}-${random_string.ecs_service_id.result}"
   cluster                            = aws_ecs_cluster.Cluster.id
   task_definition                    = aws_ecs_task_definition.TaskDefinition.arn
   desired_count                      = 1
